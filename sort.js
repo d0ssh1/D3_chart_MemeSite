@@ -72,10 +72,12 @@ let sortTable = (idTable, data) => {
 
     //выводим отсортированную таблицу на страницу
     table.innerHTML = table.rows[0].innerHTML;
-
     rowData.forEach(item => {
         table.append(item);
     });
+
+    // Обновляем график после сортировки
+    drawGraph(getFilteredDataFromTable());
 }
 
 
@@ -97,7 +99,7 @@ let resetSort = () => {
         thirdSelect.value = "0";
     }
 
-    createTable(buildings, 'list');
+    createTable(memes, 'memeTable');
 
     setSortSelects(buildings[0], document.getElementById('sort'));
 };

@@ -84,10 +84,12 @@ let clearFilters = () => {
     document.getElementById("filter").reset();
     document.getElementById('sort').reset();
     createTable(memes, 'memeTable');
+    drawGraph(memes);
 };
 
 //применение фильтров
 let applyFilters = () => {
     let form = document.getElementById("filter");
     filterTable(memes, 'memeTable', form);
+    drawGraph(getFilteredDataFromTable());
 };

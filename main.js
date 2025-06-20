@@ -19,7 +19,55 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Обработчик для кнопки построения графика
+    const drawButton = document.getElementById('draw');
+    drawButton.addEventListener('click', () => {
+        const check1 = document.getElementById('check1').checked;
+        const check2 = document.getElementById('check2').checked;
+        const errorMessage = document.getElementById('error-message');
+        const max_red_err = document.getElementById('max_red_err');
+        const min_red_err = document.getElementById('min_red_err');
+
+        if (!check1 && !check2) {
+            errorMessage.textContent = "Выберите хотя бы один параметр для отображения (макс/мин рейтинг)!";
+            max_red_err.style.color= "red";
+            min_red_err.style.color= "red";
+            return;
+        }
+
+        const filteredData = getFilteredDataFromTable();
+        if (filteredData.length === 0) {
+            errorMessage.textContent = "Нет данных для построения графика. Проверьте фильтры.";
+            return;
+        }
+
+        errorMessage.textContent = ""; // Очищаем ошибку
+        max_red_err.style.color= "";
+        min_red_err.style.color= "";
+        drawGraph(filteredData); // Вызываем функцию из chart.js
+    });
+
 });
+
+function getFilteredDataFromTable() {
+    let table = document.getElementById("memeTable");
+    let rows = table.rows;
+    let filteredData = [];
+
+    // Пропускаем заголовок (первую строку)
+    for (let i = 1; i < rows.length; i++) {
+        let cells = rows[i].cells;
+        filteredData.push({
+            "Название": cells[0].textContent,
+            "Страна": cells[1].textContent,
+            "Тема": cells[2].textContent,
+            "Источник": cells[3].textContent,
+            "Год": parseInt(cells[4].textContent),
+            "Рейтинг": parseInt(cells[5].textContent),
+        });
+    }
+    return filteredData;
+}
 
 const firstSelect = document.getElementById('fieldsFirst');
 const secondSelect = document.getElementById('fieldsSecond');

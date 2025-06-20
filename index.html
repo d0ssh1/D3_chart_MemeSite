@@ -8,62 +8,63 @@
 </head>
 <body>
 <h1>Таблица мемов</h1>
+
+<div class="container"></div>
+<table>
+    <tr>
+        <td>
+            <b>Значение по оси OX</b>
+        </td>
+        <td>
+            <b>Результат</b>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><input type="radio" name="ox" value="Год" checked> Год</label>
+        </td>
+        <td id="max_red_err">
+            <input  type="checkbox" id="check1" value="max"/><label for="check1"
+        >Максимальный рейтинг</label
+        ><br/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <label><input type="radio" name="ox" value="Страна"> Страна</label>
+        </td>
+        <td id="min_red_err">
+            <input type="checkbox" id="check2" value="min"/><label for="check2"
+        >Минимальный рейтинг</label
+        >
+        </td>
+    </tr>
+</table>
+<p>
+    <label for="type">Тип графика</label>
+    <select id="type" name="type">
+        <option value="first">Гистограмма</option>
+        <option value="second">Точечный</option>
+        <option value="third">График</option>
+    </select
+    ><br/>
+</p>
+<button id="draw" type="button">Построить</button>
+<br><br>
+
+<div id="chart-area">
+    <svg id="chart-container" width="700" height="345" style="border: 1px solid black"></svg>
+    <div id="error-message" class="error" style="color: red"></div>
+</div>
+
+
 <!-- Форма для фильтрации -->
 <form id="filter" class="form-section">
-    <table>
-        <tr>
-            <td>
-                <b>Значение по оси OX</b>
-            </td>
-            <td>
-                <b>Результат</b>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label
-                ><input
-                        type="radio"
-                        name="ox"
-                        id="firstR"
-                        value="Год"
-                        checked
-                />Год</label
-                >
-            </td>
-            <td>
-                <input type="checkbox" id="check1"/><label for="check1"
-            >Максимальный рейтинг</label
-            ><br/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <input type="radio" name="ox" id="secondR" value="Страна"/>Страна
-            </td>
-            <td>
-                <input type="checkbox" id="check2"/><label for="check2"
-            >Минимальный рейтинг</label
-            >
-            </td>
-        </tr>
-    </table>
-    <p>
-        <label for="type">Тип графика</label>
-        <select id="type" name="type">
-            <option value="first">Гистограмма</option>
-            <option value="second">Точечный</option>
-            <option value="third">График</option>
-        </select
-        ><br/>
-    </p>
-    <button type="button" id="draw">Построить</button>
-    <p>
-        <span id="error-message" class="error"></span>
-    </p>
-    <svg id="graphicArea" width="700" height="345" style="border: 1px solid black"></svg>
+
+
 
     <h2>Фильтрация</h2>
+
     <div>
         <label for="structure">Название:</label>
         <input type="text" id="structure" name="structure" placeholder="Введите название">
@@ -128,5 +129,7 @@
 <script src="main.js"></script>
 <script src="filter.js"></script>
 <script src="sort.js"></script>
+<script src="chart.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
 </body>
 </html>
