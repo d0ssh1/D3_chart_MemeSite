@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таблица мемов</title>
+    <link rel="stylesheet" href="CSS/style.css">
+</head>
+<body>
+<h1>Таблица мемов</h1>
+<!-- Форма для фильтрации -->
+<form id="filter" class="form-section">
+    <table>
+        <tr>
+            <td>
+                <b>Значение по оси OX</b>
+            </td>
+            <td>
+                <b>Результат</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label
+                ><input
+                        type="radio"
+                        name="ox"
+                        id="firstR"
+                        value="Год"
+                        checked
+                />Год</label
+                >
+            </td>
+            <td>
+                <input type="checkbox" id="check1"/><label for="check1"
+            >Максимальный рейтинг</label
+            ><br/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="radio" name="ox" id="secondR" value="Страна"/>Страна
+            </td>
+            <td>
+                <input type="checkbox" id="check2"/><label for="check2"
+            >Минимальный рейтинг</label
+            >
+            </td>
+        </tr>
+    </table>
+    <p>
+        <label for="type">Тип графика</label>
+        <select id="type" name="type">
+            <option value="first">Гистограмма</option>
+            <option value="second">Точечный</option>
+            <option value="third">График</option>
+        </select
+        ><br/>
+    </p>
+    <button type="button" id="draw">Построить</button>
+    <p>
+        <span id="error-message" class="error"></span>
+    </p>
+    <svg id="graphicArea" width="700" height="345" style="border: 1px solid black"></svg>
+
+    <h2>Фильтрация</h2>
+    <div>
+        <label for="structure">Название:</label>
+        <input type="text" id="structure" name="structure" placeholder="Введите название">
+    </div>
+    <div>
+        <label for="country">Страна:</label>
+        <input type="text" id="country" name="country" placeholder="Введите страну">
+    </div>
+    <div>
+        <label for="theme">Тема:</label>
+        <input type="text" id="theme" name="theme" placeholder="Введите тему">
+    </div>
+    <div>
+        <label for="source">Источник:</label>
+        <input type="text" id="source" name="source" placeholder="Введите источник">
+    </div>
+
+    <div>
+        <label for="yearFrom">Год (от):</label>
+        <input type="number" id="yearFrom" name="yearFrom" placeholder="от">
+        <label for="yearTo"> (до):</label>
+        <input type="number" id="yearTo" name="yearTo" placeholder="до">
+    </div>
+    <div>
+        <label for="score">Рейтинг:</label>
+        <input type="number" id="score" name="score" placeholder="Введите рейтинг">
+    </div>
+    <button type="button" onclick="applyFilters()">Применить фильтры</button>
+    <button type="button" onclick="clearFilters()">Сбросить фильтры</button>
+</form>
+
+<form id="sort" class="form-section">
+    <h2>Сортировка</h2>
+    <div>
+        <label for="fieldsFirst">Первый уровень:</label>
+        <select id="fieldsFirst" name="fieldsFirst"></select>
+        <label for="fieldsFirstDesc">По убыванию?</label>
+        <input type="checkbox" id="fieldsFirstDesc" name="fieldsFirstDesc">
+    </div>
+    <div>
+        <label for="fieldsSecond">Второй уровень:</label>
+        <select id="fieldsSecond" name="fieldsSecond"></select>
+        <label for="fieldsSecondDesc">По убыванию?</label>
+        <input type="checkbox" id="fieldsSecondDesc" name="fieldsSecondDesc">
+    </div>
+    <div>
+        <label for="fieldsThird">Третий уровень:</label>
+        <select id="fieldsThird" name="fieldsThird"></select>
+        <label for="fieldsThirdDesc">По убыванию?</label>
+        <input type="checkbox" id="fieldsThirdDesc" name="fieldsThirdDesc">
+    </div>
+    <button type="button" onclick="sortTable('memeTable', document.getElementById('sort'))">Применить сортировку
+    </button>
+    <button type="button" onclick="resetSort()">Сбросить сортировку</button>
+</form>
+
+<table id="memeTable"></table>
+
+<!-- Подключаем файлы с данными и скриптами -->
+<script src="data.js"></script>
+<script src="table.js"></script>
+<script src="main.js"></script>
+<script src="filter.js"></script>
+<script src="sort.js"></script>
+</body>
+</html>
